@@ -5,11 +5,17 @@
          colors="true"
 >
     <testsuites>
-        <testsuite name="Unit">
-            <directory suffix="Test.php">./tests/Unit</directory>
+        <testsuite name="Adapter">
+            <directory suffix="Test.php">./tests/Adapter</directory>
         </testsuite>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests/Feature</directory>
+        <testsuite name="App">
+            <directory suffix="Test.php">./tests/App</directory>
+        </testsuite>
+        <testsuite name="Domain">
+            <directory suffix="Test.php">./tests/Domain</directory>
+        </testsuite>
+        <testsuite name="Library">
+            <directory suffix="Test.php">./tests/Library</directory>
         </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
@@ -21,8 +27,8 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <server name="DB_DATABASE" value=":memory:"/> -->
+        <server name="DB_CONNECTION" value="tests"/>
+        <server name="DB_DATABASE" value="db_tests"/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
