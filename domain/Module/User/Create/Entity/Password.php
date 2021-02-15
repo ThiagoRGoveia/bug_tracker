@@ -12,7 +12,7 @@ class Password
         $this->password = $password;
     }
 
-    public function getPasswordString(): string
+    public function getPassword(): string
     {
         return $this->password;
     }
