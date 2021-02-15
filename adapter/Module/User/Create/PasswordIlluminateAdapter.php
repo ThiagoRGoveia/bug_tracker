@@ -8,8 +8,13 @@ use Tracker\Domain\Module\User\Create\Port\PasswordPort;
 
 class PasswordIlluminateAdapter implements PasswordPort
 {
-    public static function generateHash(string $password): Password
+    public function generateHash(string $password): Password
     {
         return new Password(Hash::make($password));
+    }
+
+    public function validatePassword(string $password, Password $storedPassword): bool
+    {
+        return Hash::check($password, $storedPassword->getPassword());
     }
 }
