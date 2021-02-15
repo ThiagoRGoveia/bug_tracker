@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Module\User\Create;
+namespace Tests\Domain\Module\User\Create;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
