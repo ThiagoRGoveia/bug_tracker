@@ -1,11 +1,11 @@
 <?php
 
-namespace Tracker\Domain\Module\User\Port;
+namespace Tracker\Domain\Module\User\Create\Port;
 
-use Tracker\Domain\Module\User\Entity\Password;
+use Tracker\Domain\Module\User\Create\Entity\Password;
 
 
 interface PasswordPort
 {
-    public static function generate(string $password): Password;
+    public static function generateHash(string $password): Password;
 }
