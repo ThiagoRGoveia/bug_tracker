@@ -6,5 +6,5 @@ use Tracker\Domain\Module\User\Create\Entity\User;
 
 interface UserPort
 {
-    public static function create(User $user);
+    public function create(User $user): User;
 }

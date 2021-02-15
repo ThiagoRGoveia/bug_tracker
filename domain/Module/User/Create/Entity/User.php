@@ -8,12 +8,14 @@ class User
     private $name;
     private $email;
     private $password;
+    private $id;
 
-    public function __construct(string $name, string $email, Password $password)
+    public function __construct(string $name, string $email, Password $password, ?string $id)
     {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->id = $id;
     }
 
     public function getName(): string
@@ -29,6 +31,11 @@ class User
     public function getPassword(): Password
     {
         return $this->password;
+    }
+
+    public function getId(): ?string
+    {
+        return $this->id;
     }
 
     public function getCredentials(): array
