@@ -17,6 +17,9 @@
         <testsuite name="Library">
             <directory suffix="Test.php">./tests/Library</directory>
         </testsuite>
+        <testsuite name="Database">
+            <directory suffix="Test.php">./tests/Database</directory>
+        </testsuite>
     </testsuites>
     <coverage processUncoveredFiles="true">
         <include>
