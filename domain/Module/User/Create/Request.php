@@ -10,7 +10,7 @@ class Request
     private $email;
     private $password;
 
-    public function __construct(string $name, string $email, Password $password)
+    public function __construct(string $name, string $email, string $password)
     {
         $this->name = $name;
         $this->email = $email;
@@ -27,7 +27,7 @@ class Request
         return $this->email;
     }
 
-    public function getPassword(): Password
+    public function getPassword(): string
     {
         return $this->password;
     }

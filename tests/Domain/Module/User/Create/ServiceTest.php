@@ -11,6 +11,7 @@ use Tracker\Domain\Module\User\Create\Entity\User;
 use Tracker\Domain\Module\User\Create\Port\UserPort;
 use Tracker\Domain\Module\User\Create\Entity\Password;
 use Tracker\Domain\Module\User\Create\Exception\UserWithoutIdException;
+use Tracker\Domain\Module\User\Create\Port\PasswordPort;
 
 class ServiceTest extends TestCase
 {
@@ -20,11 +21,13 @@ class ServiceTest extends TestCase
     public function testExecuteReturnResponse(
         Response $expected,
         Request $request,
-        UserPort $userPort
+        UserPort $userPort,
+        PasswordPort $passwordPort
     ): void {
 
         $service = new Service(
-            $userPort
+            $userPort,
+            $passwordPort
         );
 
         self::assertEquals(
@@ -42,7 +45,7 @@ class ServiceTest extends TestCase
                 new User(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake'),
+                    new Password('hashedFake'),
                     null
                 )
             )
@@ -50,9 +53,16 @@ class ServiceTest extends TestCase
                 new User(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake'),
+                    new Password('hashedFake'),
                     'fake'
                 )
+            );
+        $passwordPort = $this->createMock(PasswordPort::class);
+        $passwordPort->expects($this->once())
+            ->method('generateHash')
+            ->with('fake')
+            ->willReturn(
+                new Password('hashedFake')
             );
         return [
             'user' => [
@@ -60,16 +70,17 @@ class ServiceTest extends TestCase
                     new User(
                         'fake',
                         'fake@fake.com',
-                        new Password('fake'),
+                        new Password('hashedFake'),
                         'fake'
                     )
                 ),
                 'request' => new Request(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake')
+                    'fake'
                 ),
-                'userPort' => $userPort
+                'userPort' => $userPort,
+                'passwordPort' => $passwordPort
             ]
         ];
     }
@@ -80,11 +91,13 @@ class ServiceTest extends TestCase
     public function testExecuteThrowsException(
         Exception $expected,
         Request $request,
-        UserPort $userPort
+        UserPort $userPort,
+        PasswordPort $passwordPort
     ): void {
 
         $service = new Service(
-            $userPort
+            $userPort,
+            $passwordPort
         );
 
         $this->expectExceptionObject($expected);
@@ -101,7 +114,7 @@ class ServiceTest extends TestCase
                 new User(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake'),
+                    new Password('hashedFake'),
                     null
                 )
             )
@@ -109,9 +122,16 @@ class ServiceTest extends TestCase
                 new User(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake'),
+                    new Password('hashedFake'),
                     null
                 )
+            );
+        $passwordPort = $this->createMock(PasswordPort::class);
+        $passwordPort->expects($this->once())
+            ->method('generateHash')
+            ->with('fake')
+            ->willReturn(
+                new Password('hashedFake')
             );
         return [
             'user' => [
@@ -119,9 +139,10 @@ class ServiceTest extends TestCase
                 'request' => new Request(
                     'fake',
                     'fake@fake.com',
-                    new Password('fake')
+                    'fake'
                 ),
-                'userPort' => $userPort
+                'userPort' => $userPort,
+                'passwordPort' => $passwordPort
             ]
         ];
     }
