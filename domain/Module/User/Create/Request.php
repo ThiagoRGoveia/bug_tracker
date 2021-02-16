@@ -2,8 +2,6 @@
 
 namespace Tracker\Domain\Module\User\Create;
 
-use Tracker\Domain\Module\User\Create\Entity\Password;
-
 class Request
 {
     private $name;
