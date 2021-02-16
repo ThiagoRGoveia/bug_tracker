@@ -15,7 +15,7 @@ class Service
         $this->authPort = $authPort;
     }
 
-    public function execute(Request $request)
+    public function execute(Request $request): Response
     {
         $user = $this->authPort->authenticate(
             $request->getEmail(),
