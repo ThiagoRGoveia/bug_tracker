@@ -5,13 +5,13 @@ namespace Tests\Adapter\Module\User\Create;
 use Tests\TestCase;
 use Tracker\Domain\Module\User\Create\Entity\User;
 use Tracker\Domain\Module\User\Create\Port\UserPort;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tracker\Domain\Module\User\Create\Entity\Password;
 use Tracker\Adapter\Module\User\Create\UserEloquentAdapter;
 
 class UserEloquentAdapterTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     public function testAdapterImplementsPort(): void
     {
