@@ -30,5 +30,7 @@ class UserEloquentAdapterTest extends TestCase
             $user->id,
             $userModel->id
         );
+
+        $this->assertInstanceOf(UserDb::class, $user);
     }
 }
