@@ -26,7 +26,7 @@ class AuthenicatedUser extends User
         return $this->token;
     }
 
-    public function isAuthenticated()
+    public function isAuthenticated(): bool
     {
         return $this->isAuthenticated;
     }
